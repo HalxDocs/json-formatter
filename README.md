@@ -30,7 +30,7 @@ And existing online tools were:
 
 So instead of suffering —
 
-👉 Halx built his own tool.
+👉 HalxDocs built his own tool.
 
 A tool that is:
 
