@@ -1,4 +1,4 @@
-🌟 JSON Formatter — Developer Edition
+🌟 JSONStack — Developer Edition
 Made simple. Made beautiful. Made for everyone.
 
 This tool was created because JSON is everywhere, but working with it can be annoying, confusing, or exhausting — especially when you’re dealing with thousands or even tens of thousands of lines.
