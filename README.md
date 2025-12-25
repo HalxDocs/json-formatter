@@ -1,163 +1,74 @@
 🌟 JSONStack — Developer Edition
-Made simple. Made beautiful. Made for everyone.
+Made powerful. Made beautiful. Built for scale.
 
-This tool was created because JSON is everywhere, but working with it can be annoying, confusing, or exhausting — especially when you’re dealing with thousands or even tens of thousands of lines.
+JSONStack was forged in the fires of a real-world, massive-scale challenge. While developing a Bible application project that processed extremely large JSON files (300,000+ lines), the creator, HalxDocs, encountered the universal frustration of existing JSON tools. They were too slow, cluttered with ads, prone to crashes with big data, and lacked the deep, developer-focused features needed for serious work.
 
-This app turns that pain into power.
-Paste JSON → press a button → done.
-Fast. Clean. Beautiful.
+So, instead of another compromise, HalxDocs built the definitive tool. JSONStack is engineered from the ground up to be blazing fast, reliable, and effortlessly handle the huge datasets that break other tools—it's been stress-tested and proven with files over 400,000 lines.
 
-💡 Why This Tool Was Built (The Real Story)
+Paste your JSON → press a button → get perfect results. It's that simple.
 
-This project started because HalxDocs was formatting extremely large JSON files from the Bible project — sometimes 50,000+ lines.
+🚀 Why JSONStack? A Developer's Toolkit
+Don't just format JSON—master it. JSONStack is your complete Swiss Army knife, packed with features born from solving real problems.
 
-Manually trying to format it…
-Manually trying to convert it…
-Manually finding errors…
-Manually trying to create TypeScript types…
-Manually trying to compare differences…
+Category	Feature	Description
+⚡ Performance & Scale	Massive File Support	Proven with 400,000+ line files. Built-in streaming parser and smart memory management prevent browser crashes.
+Performance Mode	Toggle this for large files. Enables a virtualized viewer and web workers to keep the UI silky smooth.
+Progress Streaming	See real-time progress with estimated lines processed when handling enormous uploads.
+🧹 Core Operations	Format / Minify	Instantly structure messy JSON or compress it to a single line.
+Auto-Fix JSON	Intelligently repairs common syntax errors like missing quotes, trailing commas, and more.
+🔄 Advanced Conversions	JSON → TypeScript	Generates precise, ready-to-use TypeScript interfaces from your data.
+JSON → YAML / CSV / XML	Convert to cleaner config formats (YAML), spreadsheet data (CSV), or legacy XML.
+JSON → SQL	Fully configurable SQL generator. Supports PostgreSQL, MySQL, SQLite, with options for CREATE TABLE, DROP, and batch INSERT statements.
+JSON Schema Generator	Create a validation schema to define and enforce the structure of your JSON data.
+🔬 Deep Analysis	Tree Viewer	Visualize complex, nested JSON as an interactive, collapsible tree. Essential for understanding huge datasets.
+Compare (Diff Mode)	Visually highlight and compare differences between two JSON structures.
+Flatten / Group / Smart Normalize	Powerful structural operations to reshape your data for analysis, storage, or APIs.
+🎛️ Customization	Custom Template Engine	Build and save reusable templates to transform JSON into any text-based format (HTML, custom SQL, reports, etc.).
+Snapshot System	Save your current input/output state instantly and return to it later—like named sessions.
+📤 Input/Output	Smart Import	Import from file upload, clipboard paste, or load an example. Handles large files seamlessly.
+Virtualized Output Viewer	Smoothly scroll through millions of lines of output without lag, thanks to a custom-built virtualized display.
+One-Click Export	Download results or copy to clipboard with a single click.
+🛠️ Tech Stack
+Frontend: React 18 with TypeScript
 
-It was slow.
-It was stressful.
-And existing online tools were:
+Styling: Tailwind CSS with custom glass-morphism design
 
-❌ laggy
-❌ full of ads
-❌ not beautiful
-❌ not developer-friendly
-❌ not powerful enough
-❌ crashing on big files
+Editor: Monaco Editor (The powerhouse behind VS Code)
 
-So instead of suffering —
+Performance Core: Custom useLargeJson React hook, Web Workers for heavy operations, efficient streaming JSON parser.
 
-👉 HalxDocs built his own tool.
+Converters: Integrated libraries (PapaParse for CSV) and robust, custom-built logic for SQL, XML, Schema generation, and more.
 
-A tool that is:
+🧭 Built For Developers, By a Developer
+This tool was created out of necessity. The existing ecosystem was failing at the scale required for serious projects. JSONStack is the answer—a reliable, powerful, and beautiful toolkit that respects your time and data.
 
-modern
+Key Differentiators:
 
-fast
+✅ No Lag, No Crash Philosophy: Architecture designed for stability with massive data.
 
-beautiful
+✅ Zero Ads, Zero Clutter: A clean, focused interface that puts your JSON first.
 
-developer-focused
+✅ Desktop-Grade Power in the Browser: Features like the custom template engine and SQL configurator are unmatched by online tools.
 
-capable of handling huge JSON files
+✅ Mobile-Ready: A fully responsive layout with a smart action dock and mobile-optimized modals.
 
-reliable
+📈 What's Next?
+The roadmap is driven by real developer needs:
 
-and customizable
+JSON → Excel (.xlsx) direct export.
 
-Built with the real-life pain of working with Bible JSON data at massive scale.
+Enhanced AI-assisted JSON repair and analysis.
 
-This is a tool made by a developer who faced a real problem —
-and decided to solve it permanently.
+API mock server generator from JSON samples.
 
-🎉 What This Tool Can Do
+Plugin system for community-built converters.
 
-Think of this app like a super toolbox for JSON.
-It has MANY tools — each one does something special, and everything is easy to understand.
+👨‍💻 Author & Support
+JSONStack was built with ❤️ and grit by HalxDocs.
 
-🔹 Core Tools
-✔ Format JSON
+If this tool saves you hours of frustration and makes working with JSON a joy, please consider starring the repository on GitHub. It’s the best way to support the project and help it grow.
 
-Takes messy JSON and makes it clean and readable.
+⭐ Star it here: https://github.com/HalxDocs/json-formatter
 
-✔ Minify JSON
-
-Squishes JSON into one tiny line to save space.
-
-✔ JSON → TypeScript
-
-Turns JSON into a TypeScript interface automatically.
-
-✔ JSON → YAML
-
-Converts JSON into YAML (cleaner format developers love).
-
-✔ JSON → CSV
-
-Makes JSON compatible with Excel / Sheets.
-
-✔ JSON → SQL
-
-Converts JSON into SQL INSERT statements.
-Perfect for database import.
-
-✔ JSON → XML
-
-Converts JSON into XML format.
-
-✔ Compare JSON (Diff Mode)
-
-Shows differences between two JSON files.
-
-✔ Snapshot Mode
-
-Saves your JSON — like taking a picture — so you can return later.
-
-✔ Tree Viewer
-
-View your JSON as a collapsible tree structure.
-Super helpful for huge files.
-
-🎨 UI / Design Features
-
-Monaco editor (VS Code engine)
-
-Dark & light theme
-
-Glass UI
-
-Smooth animations
-
-Mobile-first layout
-
-Horizontal scroll dock
-
-Clean developer style
-
-🧪 Tech Stack
-
-React
-
-TypeScript
-
-Tailwind CSS
-
-Monaco Editor
-
-YAML
-
-PapaParse
-
-Custom Converters
-
-📦 Coming Soon
-
-JSON → Excel .xlsx
-
-JSON schema generator
-
-Streaming mode for very huge files
-
-AI JSON fixer
-
-API generator
-
-Custom themes
-
-🧑‍💻 Author
-
-Built with ❤️ by HalxDocs — a developer solving real problems.
-GitHub: https://github.com/halxdocs
-
-⭐ Support
-
-If this tool helped you, please ⭐ star the repository.
-It helps the project grow.
-
-🙏 THANK YOU
-
-Thank you for using this tool!
-You’re part of the journey to build the cleanest, fastest JSON tools on the internet.
+🙏 Thank You!
+Thank you for using JSONStack. You're not just using a tool; you're supporting a vision for cleaner, faster, and more powerful developer utilities on the web.
