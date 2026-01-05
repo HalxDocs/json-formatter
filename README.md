@@ -68,7 +68,7 @@ JSONStack was built with ❤️ and grit by HalxDocs.
 
 If this tool saves you hours of frustration and makes working with JSON a joy, please consider starring the repository on GitHub. It’s the best way to support the project and help it grow.
 
-⭐ Star it here: https://github.com/HalxDocs/json-formatter
+⭐ Star it here, Right here in this gihub page.
 
 🙏 Thank You!
 Thank you for using JSONStack. You're not just using a tool; you're supporting a vision for cleaner, faster, and more powerful developer utilities on the web.
