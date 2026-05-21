@@ -7,7 +7,10 @@
       "Bash(git remote *)",
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
-      "Bash(git fetch *)"
+      "Bash(git fetch *)",
+      "Bash(npm i *)",
+      "Bash(npx update-browserslist-db@latest --yes)",
+      "Bash(npx browserslist@latest --update-db)"
     ]
   }
 }
