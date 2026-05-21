@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <!-- ========================= -->
+    <!-- CODED SVG FAVICON (NO FILE) -->
+    <!-- ========================= -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href='data:image/svg+xml;utf8,
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+        <rect width="100" height="100" rx="22" fill="black"/>
+        <text x="50%" y="58%" text-anchor="middle" font-size="48" font-family="monospace" fill="white">{}</text>
+      </svg>'
+    />
+
+    <!-- Apple touch icon (still coded SVG) -->
+    <link
+      rel="apple-touch-icon"
+      href='data:image/svg+xml;utf8,
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+        <rect width="180" height="180" rx="40" fill="black"/>
+        <text x="50%" y="58%" text-anchor="middle" font-size="72" font-family="monospace" fill="white">{}</text>
+      </svg>'
+    />
+
+    <!-- ========================= -->
+    <!-- PWA / MOBILE -->
+    <!-- ========================= -->
+    <meta name="theme-color" content="#000000" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <!-- ========================= -->
+    <!-- SEO -->
+    <!-- ========================= -->
+    <title>JSONStack — JSON Formatter, Converter & Developer Toolkit</title>
+
+    <meta
+      name="description"
+      content="JSONStack is a powerful JSON formatter and developer toolkit. Format, fix, convert JSON to SQL, CSV, XML, YAML, visualize trees, diff data, and handle large JSON files."
+    />
+
+    <meta name="keywords" content="json formatter, json to sql, json to csv, json to xml, json tree viewer, developer tools, json diff" />
+
+    <!-- ========================= -->
+    <!-- OPEN GRAPH -->
+    <!-- ========================= -->
+    <meta property="og:title" content="JSONStack — JSON Formatter & Developer Toolkit" />
+    <meta property="og:description" content="Format, fix, convert and visualize large JSON files. Built for developers." />
+    <meta property="og:url" content="https://jsonstack.dev" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="JSONStack" />
+
+    <!-- ========================= -->
+    <!-- STRUCTURED DATA (JSON-LD) -->
+    <!-- ========================= -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "JSONStack",
+      "applicationCategory": "DeveloperTool",
+      "operatingSystem": "Web",
+      "description": "JSON formatter and converter for developers. Format, fix, convert, and visualize large JSON files.",
+      "url": "https://jsonstack.dev",
+      "author": {
+        "@type": "Person",
+        "name": "HalxDocs"
+      }
+    }
+    </script>
+
+    <!-- PWA manifest handled by Vite / plugin -->
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <!-- App entry -->
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

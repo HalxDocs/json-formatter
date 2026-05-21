@@ -1,0 +1,5 @@
+/* App.css — only app-specific overrides */
+
+#root {
+  min-height: 100vh;
+}

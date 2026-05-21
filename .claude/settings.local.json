@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Select-Object FullName)",
+      "PowerShell(Get-ChildItem \"c:\\\\Users\\\\USER\\\\Desktop\\\\json formatter\\\\src\" -Recurse -File | ForEach-Object { $_.FullName })",
+      "Bash(git init *)",
+      "Bash(git remote *)",
+      "Bash(git add *)"
+    ]
+  }
+}
