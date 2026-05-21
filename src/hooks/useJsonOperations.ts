@@ -1,6 +1,7 @@
 import { notify } from "../utils/notify";
 import { safeParse } from "../utils/json/safeParse";
 import { autoFixJson } from "../utils/json/autoFixJson";
+import { csvToJson } from "../utils/convert/toJson/csvToJson";
 import { jsonToSchema } from "../utils/json/jsonToSchema";
 import { jsonToTs } from "../utils/convert/fromJson/jsonToTs";
 import { jsonToYaml } from "../utils/convert/fromJson/jsonToYaml";
@@ -378,10 +379,65 @@ export function buildJsonOperations(ctx: OperationsContext) {
     notify({ type: "success", message: "Snapshot saved successfully" });
   };
 
+  const sortKeys = () => {
+    const parsed = safeParse(inputJson);
+    if (!parsed) return;
+    function sortObj(v: unknown): unknown {
+      if (Array.isArray(v)) return v.map(sortObj);
+      if (v && typeof v === "object") {
+        const out: Record<string, unknown> = {};
+        Object.keys(v as object).sort().forEach(k => {
+          out[k] = sortObj((v as Record<string, unknown>)[k]);
+        });
+        return out;
+      }
+      return v;
+    }
+    setOutputJson(JSON.stringify(sortObj(parsed), null, 2));
+    notify({ type: "success", message: "Keys sorted alphabetically" });
+  };
+
+  const removeNulls = () => {
+    const parsed = safeParse(inputJson);
+    if (!parsed) return;
+    function clean(v: unknown): unknown {
+      if (Array.isArray(v)) return v.filter(x => x != null).map(clean);
+      if (v && typeof v === "object") {
+        const out: Record<string, unknown> = {};
+        Object.entries(v as object).forEach(([k, val]) => {
+          if (val != null) out[k] = clean(val);
+        });
+        return out;
+      }
+      return v;
+    }
+    setOutputJson(JSON.stringify(clean(parsed), null, 2));
+    notify({ type: "success", message: "Null / undefined values removed" });
+  };
+
+  const fromCsv = () => {
+    if (!inputJson.trim()) {
+      notify({ type: "warning", message: "Paste CSV into the input panel first" });
+      return;
+    }
+    try {
+      const rows = csvToJson(inputJson);
+      if (rows.length === 0) {
+        notify({ type: "warning", message: "No data rows found in CSV" });
+        return;
+      }
+      setOutputJson(JSON.stringify(rows, null, 2));
+      notify({ type: "success", message: `CSV converted — ${rows.length} rows` });
+    } catch {
+      notify({ type: "error", message: "CSV parse failed — check format" });
+    }
+  };
+
   return {
     format, minify, fix,
     toTypeScript, toCsv, toYaml, toXml, toToml, toIni, toMarkdown, toExcel, toSql,
     diff, toSchema, flatten, group, smartNorm, applyCustomTemplate,
     downloadOutput, downloadTs, saveSnapshot,
+    sortKeys, removeNulls, fromCsv,
   };
 }

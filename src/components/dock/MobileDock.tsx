@@ -11,19 +11,21 @@ interface Props {
 
 // Group labels for the action grid
 const GROUPS: { label: string; keys: string[] }[] = [
-  { label: "Format", keys: ["Import", "Format", "Minify", "Fix JSON"] },
-  { label: "Convert", keys: ["TypeScript", "YAML", "CSV", "XML", "SQL", "TOML", "INI", "Markdown", "Excel"] },
-  { label: "Tools", keys: ["Diff", "Schema", "Tree", "Structure"] },
-  { label: "Other", keys: ["Snapshot", "Suggest"] },
+  { label: "Format",  keys: ["Import", "Format", "Minify", "Fix JSON"] },
+  { label: "Convert", keys: ["TypeScript", "YAML", "CSV", "CSV→JSON", "XML", "SQL", "TOML", "INI", "Markdown", "Excel"] },
+  { label: "Tools",   keys: ["Diff", "Query", "Decode", "Sort Keys", "No Nulls", "Schema", "Tree", "Structure"] },
+  { label: "Other",   keys: ["Snapshot", "Suggest"] },
 ];
 
 const ICON_COLOR: Record<string, string> = {
   Import: "text-blue-400", Format: "text-blue-400", Minify: "text-slate-400",
   "Fix JSON": "text-purple-400", TypeScript: "text-blue-400", YAML: "text-green-400",
-  CSV: "text-emerald-400", XML: "text-orange-400", SQL: "text-cyan-400",
-  TOML: "text-pink-400", INI: "text-rose-400", Markdown: "text-indigo-400",
-  Excel: "text-green-500", Diff: "text-amber-400", Schema: "text-violet-400",
-  Tree: "text-teal-400", Structure: "text-sky-400",
+  CSV: "text-emerald-400", "CSV→JSON": "text-cyan-400", XML: "text-orange-400",
+  SQL: "text-cyan-500", TOML: "text-pink-400", INI: "text-rose-400",
+  Markdown: "text-indigo-400", Excel: "text-green-500",
+  Diff: "text-amber-400", Query: "text-blue-400", Decode: "text-violet-400",
+  "Sort Keys": "text-sky-400", "No Nulls": "text-red-400",
+  Schema: "text-violet-400", Tree: "text-teal-400", Structure: "text-sky-400",
   Snapshot: "text-slate-400", Suggest: "text-yellow-400",
 };
 

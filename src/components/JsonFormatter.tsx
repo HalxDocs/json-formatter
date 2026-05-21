@@ -1,6 +1,7 @@
 import {
   FileJson, Minimize2, FileType, Table, Code, Database,
   ArrowRightLeft, Layers, TreePine, Sparkles, Camera, Upload, Download,
+  Search, KeyRound, SortAsc, Eraser, FileInput,
 } from "lucide-react";
 
 import { useJsonState } from "../hooks/useJsonState";
@@ -27,6 +28,8 @@ import MobileDock from "./dock/MobileDock";
 
 import ImportJsonModal from "./modals/ImportJsonModal";
 import SqlConfigModal from "./modals/SqlConfigModal";
+import JsonPathModal from "./modals/JsonPathModal";
+import DecoderModal from "./modals/DecoderModal";
 import StructureMenu from "./StructureMenu";
 import CustomTemplateModal from "./CustomTemplateModal";
 import TreeViewer from "./tree/TreeViewer";
@@ -79,30 +82,35 @@ const JsonFormatter = () => {
   });
 
   const mobileActions: ActionItem[] = [
-    { label: "Import",     icon: Upload,        onClick: () => state.setShowImportModal(true) },
-    { label: "Format",     icon: FileJson,      onClick: ops.format },
-    { label: "Minify",     icon: Minimize2,     onClick: ops.minify },
-    { label: "TypeScript", icon: FileType,      onClick: ops.toTypeScript },
-    { label: "YAML",       icon: Code,          onClick: ops.toYaml },
-    { label: "CSV",        icon: Table,         onClick: ops.toCsv },
-    { label: "XML",        icon: Code,          onClick: ops.toXml },
-    { label: "TOML",       icon: Code,          onClick: ops.toToml },
-    { label: "INI",        icon: Code,          onClick: ops.toIni },
-    { label: "Markdown",   icon: Table,         onClick: ops.toMarkdown },
-    { label: "Excel",      icon: Download,      onClick: ops.toExcel },
-    { label: "SQL",        icon: Database,      onClick: () => state.setShowSqlModal(true) },
-    { label: "Diff",       icon: ArrowRightLeft, onClick: () => {
+    { label: "Import",    icon: Upload,        onClick: () => state.setShowImportModal(true) },
+    { label: "Format",    icon: FileJson,      onClick: ops.format },
+    { label: "Minify",    icon: Minimize2,     onClick: ops.minify },
+    { label: "Fix JSON",  icon: Sparkles,      onClick: ops.fix },
+    { label: "TypeScript",icon: FileType,      onClick: ops.toTypeScript },
+    { label: "YAML",      icon: Code,          onClick: ops.toYaml },
+    { label: "CSV",       icon: Table,         onClick: ops.toCsv },
+    { label: "CSV→JSON",  icon: FileInput,     onClick: ops.fromCsv },
+    { label: "XML",       icon: Code,          onClick: ops.toXml },
+    { label: "TOML",      icon: Code,          onClick: ops.toToml },
+    { label: "INI",       icon: Code,          onClick: ops.toIni },
+    { label: "Markdown",  icon: Table,         onClick: ops.toMarkdown },
+    { label: "Excel",     icon: Download,      onClick: ops.toExcel },
+    { label: "SQL",       icon: Database,      onClick: () => state.setShowSqlModal(true) },
+    { label: "Diff",      icon: ArrowRightLeft, onClick: () => {
         const next = !state.compareMode;
         state.setCompareMode(next);
         if (next && state.compareJson) ops.diff();
       },
     },
-    { label: "Structure",  icon: Layers,        onClick: () => state.setShowStructureMenu(true) },
-    { label: "Fix JSON",   icon: Sparkles,      onClick: ops.fix },
-    { label: "Schema",     icon: Code,          onClick: ops.toSchema },
-    { label: "Tree",       icon: TreePine,      onClick: () => state.setShowTreeViewer(true) },
-    { label: "Suggest",    icon: Sparkles,      onClick: () => state.setShowFeatureModal(true) },
-    { label: "Snapshot",   icon: Camera,        onClick: () => ops.saveSnapshot(state.inputJson, state.outputJson) },
+    { label: "Query",     icon: Search,        onClick: () => state.setShowJsonPathModal(true) },
+    { label: "Decode",    icon: KeyRound,      onClick: () => state.setShowDecoderModal(true) },
+    { label: "Sort Keys", icon: SortAsc,       onClick: ops.sortKeys },
+    { label: "No Nulls",  icon: Eraser,        onClick: ops.removeNulls },
+    { label: "Schema",    icon: Code,          onClick: ops.toSchema },
+    { label: "Tree",      icon: TreePine,      onClick: () => state.setShowTreeViewer(true) },
+    { label: "Structure", icon: Layers,        onClick: () => state.setShowStructureMenu(true) },
+    { label: "Snapshot",  icon: Camera,        onClick: () => ops.saveSnapshot(state.inputJson, state.outputJson) },
+    { label: "Suggest",   icon: Sparkles,      onClick: () => state.setShowFeatureModal(true) },
   ];
 
   const dark = state.theme === "dark";
@@ -279,6 +287,18 @@ const JsonFormatter = () => {
         onConfigChange={state.setSqlConfig}
         onGenerate={ops.toSql}
       />
+      <JsonPathModal
+        open={state.showJsonPathModal}
+        onClose={() => state.setShowJsonPathModal(false)}
+        theme={state.theme}
+        inputJson={state.inputJson}
+      />
+      <DecoderModal
+        open={state.showDecoderModal}
+        onClose={() => state.setShowDecoderModal(false)}
+        theme={state.theme}
+        inputJson={state.inputJson}
+      />
 
       {/* ── Docks ────────────────────────────────────────────────── */}
       <ActionDock
@@ -287,6 +307,8 @@ const JsonFormatter = () => {
         showTreeViewer={state.showTreeViewer}
         showSqlModal={state.showSqlModal}
         showImportModal={state.showImportModal}
+        showJsonPathModal={state.showJsonPathModal}
+        showDecoderModal={state.showDecoderModal}
         performanceMode={state.performanceMode}
         isLargeFile={largeJson.isLargeFile}
         onImport={() => state.setShowImportModal(true)}
@@ -296,6 +318,7 @@ const JsonFormatter = () => {
         onTypeScript={ops.toTypeScript}
         onYaml={ops.toYaml}
         onCsv={ops.toCsv}
+        onFromCsv={ops.fromCsv}
         onXml={ops.toXml}
         onToml={ops.toToml}
         onIni={ops.toIni}
@@ -313,6 +336,10 @@ const JsonFormatter = () => {
         onSuggest={() => state.setShowFeatureModal(true)}
         onSnapshot={() => ops.saveSnapshot(state.inputJson, state.outputJson)}
         onTogglePerformanceMode={() => state.setPerformanceMode(!state.performanceMode)}
+        onJsonPath={() => state.setShowJsonPathModal(true)}
+        onDecoder={() => state.setShowDecoderModal(true)}
+        onSortKeys={ops.sortKeys}
+        onRemoveNulls={ops.removeNulls}
       />
 
       <MobileDock

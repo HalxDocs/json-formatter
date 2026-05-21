@@ -53,6 +53,12 @@ export interface JsonState {
   showPerformanceWarning: boolean;
   setShowPerformanceWarning: (v: boolean) => void;
 
+  showJsonPathModal: boolean;
+  setShowJsonPathModal: (v: boolean) => void;
+
+  showDecoderModal: boolean;
+  setShowDecoderModal: (v: boolean) => void;
+
   sqlConfig: SqlConfig;
   setSqlConfig: (c: SqlConfig) => void;
 }
@@ -76,6 +82,8 @@ export function useJsonState(): JsonState {
   const [showImportModal, setShowImportModal] = useState(false);
   const [showMobileActions, setShowMobileActions] = useState(false);
   const [showPerformanceWarning, setShowPerformanceWarning] = useState(false);
+  const [showJsonPathModal, setShowJsonPathModal] = useState(false);
+  const [showDecoderModal, setShowDecoderModal]   = useState(false);
 
   const [sqlConfig, setSqlConfig] = useState<SqlConfig>({
     tableName: "data",
@@ -120,6 +128,8 @@ export function useJsonState(): JsonState {
     showImportModal, setShowImportModal,
     showMobileActions, setShowMobileActions,
     showPerformanceWarning, setShowPerformanceWarning,
+    showJsonPathModal, setShowJsonPathModal,
+    showDecoderModal, setShowDecoderModal,
     sqlConfig, setSqlConfig,
   };
 }
