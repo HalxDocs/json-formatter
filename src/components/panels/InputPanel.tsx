@@ -37,43 +37,44 @@ const InputPanel = ({
     reader.readAsText(file);
   };
 
+  const btnCls = `flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs transition active:scale-95
+    ${dark ? "hover:bg-white/10 text-white/40 hover:text-white/80" : "hover:bg-slate-200 text-slate-400 hover:text-slate-700"}`;
+
   return (
     <div className="flex flex-col h-full min-h-0">
       {/* Panel header */}
-      <div className={`flex items-center justify-between px-4 py-2.5 rounded-t-2xl border-b
+      <div className={`flex items-center justify-between px-3 sm:px-4 py-2 sm:py-2.5 rounded-t-2xl border-b
         ${dark ? "bg-white/4 border-white/8" : "bg-slate-50 border-slate-200"}`}>
-        <div className="flex items-center gap-2">
-          <FileJson size={14} className={dark ? "text-blue-400" : "text-blue-500"} />
-          <span className={`text-xs font-semibold uppercase tracking-wider
+
+        <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+          <FileJson size={13} className={`shrink-0 ${dark ? "text-blue-400" : "text-blue-500"}`} />
+          <span className={`text-[11px] sm:text-xs font-semibold uppercase tracking-wider shrink-0
             ${dark ? "text-white/50" : "text-slate-500"}`}>
-            Input{isLargeFile ? " · Large File" : ""}
+            Input{isLargeFile ? " · Large" : ""}
           </span>
           {value && (
-            <span className={`text-[10px] px-1.5 py-0.5 rounded-md
+            <span className={`hidden sm:inline-block text-[10px] px-1.5 py-0.5 rounded-md shrink-0
               ${dark ? "bg-white/6 text-white/30" : "bg-slate-200 text-slate-400"}`}>
-              {lines.toLocaleString()} lines · {chars > 1024
-                ? `${(chars / 1024).toFixed(1)} KB`
-                : `${chars} chars`}
+              {lines.toLocaleString()} ln · {chars > 1024 ? `${(chars / 1024).toFixed(1)}KB` : `${chars}ch`}
             </span>
           )}
         </div>
 
-        <div className="flex items-center gap-1">
-          <button onClick={onCopy} title="Copy"
-            className={`flex items-center gap-1 px-2 py-1 rounded-lg text-xs transition
-              ${dark ? "hover:bg-white/10 text-white/40 hover:text-white/80" : "hover:bg-slate-200 text-slate-400 hover:text-slate-700"}`}>
-            <Copy size={12} /> Copy
+        <div className="flex items-center gap-0.5">
+          <button onClick={onCopy} title="Copy" className={btnCls}>
+            <Copy size={12} />
+            <span className="hidden sm:inline">Copy</span>
           </button>
-          <button onClick={onImport} title="Import file"
-            className={`flex items-center gap-1 px-2 py-1 rounded-lg text-xs transition
-              ${dark ? "hover:bg-white/10 text-white/40 hover:text-white/80" : "hover:bg-slate-200 text-slate-400 hover:text-slate-700"}`}>
-            <Upload size={12} /> Import
+          <button onClick={onImport} title="Import file" className={btnCls}>
+            <Upload size={12} />
+            <span className="hidden sm:inline">Import</span>
           </button>
           {value && (
             <button onClick={onClear} title="Clear"
-              className={`flex items-center gap-1 px-2 py-1 rounded-lg text-xs transition
+              className={`flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs transition active:scale-95
                 ${dark ? "hover:bg-red-500/15 text-white/40 hover:text-red-400" : "hover:bg-red-50 text-slate-400 hover:text-red-500"}`}>
-              <X size={12} /> Clear
+              <X size={12} />
+              <span className="hidden sm:inline">Clear</span>
             </button>
           )}
         </div>
@@ -99,20 +100,18 @@ const InputPanel = ({
           autoCapitalize="off"
         />
 
-        {/* Processing overlay */}
         {isLargeFile && isProcessing && (
           <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm">
             <div className={`flex items-center gap-3 px-5 py-3 rounded-2xl border
               ${dark ? "bg-[#1a1a1a] border-white/10" : "bg-white border-slate-200"}`}>
               <Loader2 size={18} className="animate-spin text-blue-400" />
-              <span className="text-sm font-medium">Processing large file…</span>
+              <span className="text-sm font-medium">Processing…</span>
             </div>
           </div>
         )}
 
-        {/* Drop cue — only when empty */}
         {!value && !isProcessing && (
-          <div className="pointer-events-none absolute inset-0 flex items-end justify-end p-4">
+          <div className="pointer-events-none absolute inset-0 flex items-end justify-end p-3 sm:p-4">
             <span className={`text-[10px] ${dark ? "text-white/15" : "text-slate-300"}`}>
               drag &amp; drop supported
             </span>

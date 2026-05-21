@@ -37,7 +37,7 @@ import FeatureRequestModal from "./FeatureRequestModal";
 
 import type { ActionItem } from "../types";
 
-const PANEL_HEIGHT = "h-[600px] lg:h-[720px]";
+const PANEL_HEIGHT = "h-[400px] sm:h-[560px] lg:h-[720px]";
 
 const JsonFormatter = () => {
   const state = useJsonState();
@@ -162,7 +162,7 @@ const JsonFormatter = () => {
       />
 
       {/* ── Page body ──────────────────────────────────────────── */}
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-32 space-y-5">
+      <div className="max-w-[1400px] mx-auto px-3 sm:px-6 lg:px-8 pt-4 sm:pt-6 pb-28 sm:pb-32 space-y-4 sm:space-y-5">
 
         <HeaderBar
           theme={state.theme}
